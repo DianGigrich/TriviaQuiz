@@ -5,11 +5,11 @@
 }
 * {
     box-sizing: border-box;
-    background-image: "./Assets/genshin_12_4K.jpg";
+
 }
 /* background picture */
 body {
-    background-image: url(./genshin_12_4K.jpg);
+    background-image: url(./images/genshin_12_4K.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
