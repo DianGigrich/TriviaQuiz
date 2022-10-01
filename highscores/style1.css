@@ -1,7 +1,7 @@
 :root {
-    --teal: teal;
-    --yellow: goldenrod;
-    --purple: #800040;
+    --orange: #fcba03;
+--green: #1eff7a;
+--blue: #1ea3ff;
 }
 
 * {
@@ -12,7 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(/Assets/images/lanterrite\ festival\ genshin.jpg);
+    background-image: url(/Assets/images/liyue.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -22,18 +22,14 @@ header {
     padding: 20px 40px;
     margin:3%;
     font-size: xx-large;
-    border: 8px solid var(--purple);
-    background-color: rgb(218,165,32,0.8)
 }
 
 h1 {
-    border:3px solid teal;
-    color: black;
 }
 
 main {
-    border: 8px solid goldenrod;
+    border: 8px solid var(--orange);
     color: var(--purple);
-    background-color: rgb(0,128,128);
-    padding: 10px 20px;
+    background-color: rgb(30,163,255,0.6);
+    padding: 10px 50px;
 }
