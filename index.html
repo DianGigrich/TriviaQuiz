@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,33 +12,39 @@
 <body>
     <nav>
         <a href="Assets/HighScores.html">~HighScores~🍀</a>
-        <div>Timer:</div>
+        <div>Timer: <span id=seeTimer></span></div>
     </nav>
     <header>
         <h1>Genshin Impact Fan Quiz</h1>
         <h2>How well do you know Teyvat?</h2>
     </header>
     <main>
-        <section class="Question">
-            <h3>What is the name of the Traveler?</h3>
-            <ol>
-                <li>Golden Nara</li>
-                <li>Paimon</li>
-                <li>Aether</li>
-                <li>Lumine</li>
-            </ol>
+        <section class="buttonColor">
+            <button onclick="clicky()" id="startButton">START</button>
         </section>
-        <!-- <section class="Question">
-            <h3>What area has the best soundrack?</h3>
-            <ol>
-                <li>Dragonspine</li>
-                <li>Watatsumi</li>
-                <li>The Chasm</li>
-                <li>Devantaka</li>
-            </ol>
-        </section> -->
+        <article class="Questions" hidden>
+            <section id="Q1">
+                <h3>What is the name of the Traveler?</h3>
+                <ol>
+                    <li>Golden Nara</li>
+                    <li>Paimon</li>
+                    <li>Aether</li>
+                    <li>Lumine</li>
+                </ol>
+            </section>
+            <section id="Q2>
+                <h3">What area has the best soundrack?</h3>
+                <ol>
+                    <li true>Dragonspine</li>
+                    <li>Watatsumi</li>
+                    <li>The Chasm</li>
+                    <li>Devantaka</li>
+                </ol>
+            </section>
+        </article>
         <script src="./Assets/script.js"></script>
     </main>
-    
+
 </body>
+
 </html>
