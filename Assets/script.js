@@ -17,26 +17,23 @@ var timerSpan = document.getElementById("seeTimer");
 // localStorage.setItem("Score", score)
 
 
-startGame.addEventListener("click", function () {
+startGame.addEventListener("click", function (){
     if (isPlaying) {
         return;
     }
     console.log("game started")
-    function clicky() {
-        var wholeButton = document.querySelector(".buttonColor")
+// hide display button
+startButton.style.display = "none"
 
-        if (wholeButton.style.display === "none") {
-            wholeButton.style.display = "block";
-        } else {
-            wholeButton.style.display = "none";
-        }
-    }
     isPlaying = true
     secondsLeft = 5
     console.log(secondsLeft)
 
-    // document.setAttribute("hidden", "");
-    // document..hidden = true
+Q1.style.display = "block";
+Q1.addEventListener("click", fuction() {
+    if 
+
+})
 
     clearInterval(secondsLeft)
     var timerInt = setInterval(function () {
