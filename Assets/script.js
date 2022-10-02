@@ -59,8 +59,9 @@ startGame.addEventListener("click", function () {
 
 
     isPlaying = true
-    secondsLeft = 120
+    secondsLeft = 10
     console.log(secondsLeft)
+
 
     function displayQuestion() {
         console.log("displayQuestion()")
@@ -70,21 +71,9 @@ startGame.addEventListener("click", function () {
 
         // end of questionaire
         if (newQ === undefined) {
-            // show end screen, hide questions
-            theEnd.style.display = "flex"
-            showQ.style.display = "none"
-            // userInitialSpan.textContent = initials;
-
-            submitInitials.addEventListener("click", function (event) {
-                event.preventDefault();
-                var initials = document.querySelector("#enteredInitials").value;
-                localStorage.setItem("initials", initials)
-                localStorage.setItem("score", score)
-                
-            })
-            console.log("end quiz")
-            return
+            endGame()
         }
+
         qPara.innerText = newQ.Q
         console.log("qPara", newQ.Q)
 
@@ -98,14 +87,15 @@ startGame.addEventListener("click", function () {
             // person clicks answer
             ansButton.addEventListener("click", function () {
                 if (ansButton.innerText == newQ.Ans) {
-                    score += 100
+                    score = score + 100
                     secondsLeft += 5
                     console.log(score)
-
                 }
+
                 else {
                     secondsLeft -= 10
                 }
+
                 currentIndex += 1
 
                 // clear board
@@ -113,26 +103,47 @@ startGame.addEventListener("click", function () {
                 qPara = ""
 
                 displayQuestion()
+
             })
+
         }
-        clearInterval(secondsLeft)
+    }
+    // time ends
+    clearInterval(secondsLeft)
     var timerInt = setInterval(function () {
         secondsLeft--;
         timerSpan.textContent = secondsLeft;
-        // time ends
         if (secondsLeft <= 0) {
             clearInterval(timerInt);
             isPlaying = false;
             timerSpan.textContent = '0';
+            endGame()
+
             console.log("endtimer")
-        }
-
+        };
     }, 1000);
+
+    // ENDGAME PROCESSES
+    function endGame(){
+
+        // show end screen, hide questions
+        theEnd.style.display = "flex"
+        showQ.style.display = "none"
+// click SUBMIT
+        submitInitials.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            var initials = document.querySelector("#enteredInitials").value;
+
+            localStorage.setItem("initials", JSON.stringify(initials))
+            localStorage.setItem("score", score)
+
+            window.location.href= "/highscores/HighScores.html"
+
+            console.log(submitInitials)
+        })
+        console.log("end quiz")
+        return
     }
-
-    
-
 })
 
-// over.textContent = "Would you like to see High Scores?"
-// over.setAttribute("style", "font-size:40px; font-weight: bold")
