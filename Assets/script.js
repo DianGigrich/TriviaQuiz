@@ -4,7 +4,7 @@
 //click answer, next answer reveals, answer is cataloged in localserver
 //
 
-
+MAKE JAVASCRIPT OBJECT FOR QUESTIONS
 
 
 var startGame = document.getElementById("startButton")
@@ -14,26 +14,35 @@ var timerInt;
 var secondsLeft = 5;
 var timerSpan = document.getElementById("seeTimer");
 
-// localStorage.setItem("Score", score)
+var trueAnswers = {}
+
+localStorage.setItem("score", JSON.stringify(trueAnswers))
+
+// storedAnswer = JSON.parseINT(localStorage.getItem(score))
 
 
-startGame.addEventListener("click", function (){
+startGame.addEventListener("click", function () {
     if (isPlaying) {
         return;
     }
     console.log("game started")
-// hide display button
-startButton.style.display = "none"
+    // hide display button
+    startButton.style.display = "none"
 
     isPlaying = true
     secondsLeft = 5
     console.log(secondsLeft)
 
-Q1.style.display = "block";
-Q1.addEventListener("click", fuction() {
-    if 
+    Q1.style.display = "block";
+    Q1.addEventListener("click", function (Event) {
 
-})
+        var clicky = Event.target
+        if (clicky === ) {
+            trueAnswers.textContent = "10"
+            console.log("numberlogged")
+        }
+
+    })
 
     clearInterval(secondsLeft)
     var timerInt = setInterval(function () {
