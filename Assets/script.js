@@ -9,27 +9,33 @@
 
 
 var startGame = document.getElementById("startButton")
+var theHead = document.querySelector(".theHead")
+var theEnd = document.querySelector(".theEnd")
+
+var showQ = document.querySelector(".showQ")
 var isPlaying = false;
 
 var timerInt;
 var secondsLeft = 5;
 var timerSpan = document.getElementById("seeTimer");
 
-var currentQ = 0
+var score = 0
+var currentIndex = 0
 var Questions = [{
     id: 0,
     Q: "What is the name of the Traveler?",
     Pool: ["Golden Nara", "Paimon", "Aether", "Lumine"],
     Ans: "Aether"
 },
-{id: 1,
-Q: "What area has the best soundrack?",
-Pool: ["Dragonspine", "Watatsumi", "The Chasm", "Devantaka"],
-Ans: "Dragonspine"
+{
+    id: 1,
+    Q: "What area has the best soundrack?",
+    Pool: ["Dragonspine", "Watatsumi", "The Chasm", "Devantaka"],
+    Ans: "Dragonspine"
 },
 ]
 
-var score = 0
+
 
 // localStorage.setItem("score", JSON.stringify())
 
@@ -37,44 +43,66 @@ var score = 0
 
 
 startGame.addEventListener("click", function () {
-    if (isPlaying) {
-        return;
-    }
+    // if (isPlaying) {
+    //     return;
+    // }
     displayQuestion()
 
     console.log("game started")
     // hide display button
     startButton.style.display = "none"
+    showQ.style.display = "block"
+    theHead.style.display = "none"
 
-    isPlaying = true
+
+    // isPlaying = true
     secondsLeft = 5
     console.log(secondsLeft)
 
-function displayQuestion() {
-    document.querySelector(".showQ").innerHTML = ""
+    function displayQuestion() {
+        console.log("displayQuestion()")
+        var newQ = Questions[currentIndex]
 
-    var qPara= document.createElement("p")
-    p.innterText = Questions[currentQ].Q
-    document.querySelector(".showQ").appendChild(qPara)
+        var qPara = document.createElement("p")
+        if (newQ === undefined) {
+            theEnd.style.display = "flex"
+            showQ.style.display = "none"
+            localStorage.setItem("initials", initials)
+            localStorage.setItem("score", score)
 
-    for (i=0; i < Questions[currentQ].Pool.length; i++) {
-        var ansButton= document.createElement("button")
-        ansButton.innerText = Questions[currentQ].Pool[i]
-        document.querySelector(".showQ").appendChild(ansButton)
+            console.log("end quiz")
+            return
+        }
+        qPara.innerText = newQ.Q
+        console.log("qPara", newQ.Q)
 
-        ansButton.addEventListener("click", function () {
-            if (ansButton.innerText == Questions[currentQ].Ans) {
-                score+=10
-                secondsLeft+=5
-            }
-            else {
-                secondsLeft-=10
-            }
-        currentQ+=1
-        displayQuestion()
-        })
+        document.querySelector(".showQ").appendChild(qPara)
+
+        for (i = 0; i < newQ.Pool.length; i++) {
+            var ansButton = document.createElement("button")
+            ansButton.innerText = newQ.Pool[i]
+            document.querySelector(".showQ").appendChild(ansButton)
+
+            // person clicks answer
+            ansButton.addEventListener("click", function () {
+                if (ansButton.innerText == newQ.Ans) {
+                    score += 10
+                    secondsLeft += 5
+
+                }
+                else {
+                    secondsLeft -= 10
+                }
+                currentIndex += 1
+
+                // clear board
+                document.querySelector(".showQ").innerHTML = ""
+                qPara = ""
+
+                displayQuestion()
+            })
+        }
     }
-}
 
     clearInterval(secondsLeft)
     var timerInt = setInterval(function () {

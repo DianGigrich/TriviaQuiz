@@ -11,21 +11,29 @@
 
 <body>
     <nav>
-        <a href="Assets/HighScores.html">~HighScores~🍀</a>
+        <a href="/highscores/HighScores.html">~HighScores~🍀</a>
         <div>Timer: <span id=seeTimer></span></div>
     </nav>
-    <header>
+    <header class="theHead">
         <h1>Genshin Impact Fan Quiz</h1>
-        <h1 style="display:none">High Scores</h1>
         <h2>How well do you know Teyvat?</h2>
     </header>
     <main>
         <article class="highScoreList">
         </article>
         <button id="startButton">BEGIN</button>
+        <!-- questions -->
         <div class="showQ">
 
         </div>
+        <!-- enter intials -->
+        <section class="theEnd">
+            <h1>You scored <span id=userScore></span>points!</h2>
+           <form method="POST">
+            <label for="Initials">Enter Initials</label>
+            <input type="intials" id="Initials3" placeholder="enter intials hear"/>
+           </form>
+            <button id="submitInitials">Submit</button>
         <script src="./Assets/script.js"></script>
     </main>
 
