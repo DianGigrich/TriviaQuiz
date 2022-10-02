@@ -1,10 +1,11 @@
 //hide quiz til start
 //press button to start
-//button hides, quiz reveals, timer starts
-//click answer, next answer reveals, answer is cataloged in localserver
-//
-
-MAKE JAVASCRIPT OBJECT FOR QUESTIONS
+//button hides, first qeustion reveals, timer starts
+//click answer, answer is stored in localStorage, 
+//next question revealed
+//show score at end
+//entry for initials
+//show high score log
 
 
 var startGame = document.getElementById("startButton")
@@ -14,17 +15,33 @@ var timerInt;
 var secondsLeft = 5;
 var timerSpan = document.getElementById("seeTimer");
 
-var trueAnswers = {}
+var currentQ = 0
+var Questions = [{
+    id: 0,
+    Q: "What is the name of the Traveler?",
+    Pool: ["Golden Nara", "Paimon", "Aether", "Lumine"],
+    Ans: "Aether"
+},
+{id: 1,
+Q: "What area has the best soundrack?",
+Pool: ["Dragonspine", "Watatsumi", "The Chasm", "Devantaka"],
+Ans: "Dragonspine"
+},
+]
 
-localStorage.setItem("score", JSON.stringify(trueAnswers))
+var score = 0
 
-// storedAnswer = JSON.parseINT(localStorage.getItem(score))
+// localStorage.setItem("score", JSON.stringify())
+
+// storedAnswer = JSON.parse(localStorage.getItem())
 
 
 startGame.addEventListener("click", function () {
     if (isPlaying) {
         return;
     }
+    displayQuestion()
+
     console.log("game started")
     // hide display button
     startButton.style.display = "none"
@@ -33,16 +50,31 @@ startGame.addEventListener("click", function () {
     secondsLeft = 5
     console.log(secondsLeft)
 
-    Q1.style.display = "block";
-    Q1.addEventListener("click", function (Event) {
+function displayQuestion() {
+    document.querySelector(".showQ").innerHTML = ""
 
-        var clicky = Event.target
-        if (clicky === ) {
-            trueAnswers.textContent = "10"
-            console.log("numberlogged")
-        }
+    var qPara= document.createElement("p")
+    p.innterText = Questions[currentQ].Q
+    document.querySelector(".showQ").appendChild(qPara)
 
-    })
+    for (i=0; i < Questions[currentQ].Pool.length; i++) {
+        var ansButton= document.createElement("button")
+        ansButton.innerText = Questions[currentQ].Pool[i]
+        document.querySelector(".showQ").appendChild(ansButton)
+
+        ansButton.addEventListener("click", function () {
+            if (ansButton.innerText == Questions[currentQ].Ans) {
+                score+=10
+                secondsLeft+=5
+            }
+            else {
+                secondsLeft-=10
+            }
+        currentQ+=1
+        displayQuestion()
+        })
+    }
+}
 
     clearInterval(secondsLeft)
     var timerInt = setInterval(function () {
