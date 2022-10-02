@@ -16,8 +16,10 @@ var showQ = document.querySelector(".showQ")
 var isPlaying = false;
 
 var timerInt;
-var secondsLeft = 5;
+var secondsLeft;
 var timerSpan = document.getElementById("seeTimer");
+
+var submitInitials = document.getElementById("submitInitials");
 
 var score = 0
 var currentIndex = 0
@@ -43,20 +45,21 @@ var Questions = [{
 
 
 startGame.addEventListener("click", function () {
-    // if (isPlaying) {
-    //     return;
-    // }
+    if (isPlaying) {
+        return;
+    }
     displayQuestion()
 
     console.log("game started")
+
     // hide display button
     startButton.style.display = "none"
     showQ.style.display = "block"
     theHead.style.display = "none"
 
 
-    // isPlaying = true
-    secondsLeft = 5
+    isPlaying = true
+    secondsLeft = 120
     console.log(secondsLeft)
 
     function displayQuestion() {
@@ -64,12 +67,21 @@ startGame.addEventListener("click", function () {
         var newQ = Questions[currentIndex]
 
         var qPara = document.createElement("p")
+
+        // end of questionaire
         if (newQ === undefined) {
+            // show end screen, hide questions
             theEnd.style.display = "flex"
             showQ.style.display = "none"
-            localStorage.setItem("initials", initials)
-            localStorage.setItem("score", score)
+            // userInitialSpan.textContent = initials;
 
+            submitInitials.addEventListener("click", function (event) {
+                event.preventDefault();
+                var initials = document.querySelector("#enteredInitials").value;
+                localStorage.setItem("initials", initials)
+                localStorage.setItem("score", score)
+                
+            })
             console.log("end quiz")
             return
         }
@@ -86,8 +98,9 @@ startGame.addEventListener("click", function () {
             // person clicks answer
             ansButton.addEventListener("click", function () {
                 if (ansButton.innerText == newQ.Ans) {
-                    score += 10
+                    score += 100
                     secondsLeft += 5
+                    console.log(score)
 
                 }
                 else {
@@ -102,14 +115,12 @@ startGame.addEventListener("click", function () {
                 displayQuestion()
             })
         }
-    }
-
-    clearInterval(secondsLeft)
+        clearInterval(secondsLeft)
     var timerInt = setInterval(function () {
         secondsLeft--;
         timerSpan.textContent = secondsLeft;
         // time ends
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(timerInt);
             isPlaying = false;
             timerSpan.textContent = '0';
@@ -117,6 +128,9 @@ startGame.addEventListener("click", function () {
         }
 
     }, 1000);
+    }
+
+    
 
 })
 
