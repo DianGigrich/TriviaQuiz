@@ -41,9 +41,6 @@ header {
 }
 
 /* button */
-.buttonColor {
-    background-color: rgb(252, 186, 3, 0.6);
-}
 
 #startButton {
     background-image: linear-gradient(to right,#1eff7a 0%, #8fd3f4 50%, #1eff7a 100%);
@@ -74,14 +71,39 @@ main {
     border: 5px solid var(--orange);
 }
 
+.showQ button {
+    display:flex;
+    align-items: flext-start;
+    background-color: rgb(107,194,255, 0.8);
+    padding:2%;
+    margin:5px;
+    width: 100%;
+}
+
+.showQ button:hover {
+    border: 2px dashed #1eff7a;
+
+}
 .theEnd {
     display: none;
     flex-direction: column;
     align-items: center;
-    padding: 3%;
+    background-color: rgb(30, 163, 255, 0.6);
+    padding: 10px 20px;
+    border: 5px solid var(--orange);
 }
 
-p button:hover {
-    border: 2px dashed #1eff7a;
-
+#userScore {
+    color:var(--orange);
+    font-size: xx-large;;
 }
+
+#submitInitials {
+    background-image: linear-gradient(to right,#1eff7a 0%, #8fd3f4 50%, #1eff7a 100%);
+    width: 100px;
+    height: 50px;
+    margin:20px;
+    border-radius: 20%;
+    transition: 0.5s;
+}
+

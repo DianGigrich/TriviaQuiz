@@ -11,6 +11,7 @@
 var startGame = document.getElementById("startButton")
 var theHead = document.querySelector(".theHead")
 var theEnd = document.querySelector(".theEnd")
+var userScore = document.getElementById("userScore")
 
 var showQ = document.querySelector(".showQ")
 var isPlaying = false;
@@ -37,7 +38,7 @@ var Questions = [{
 {
     Q: "Who is the best character?",
     Pool: ["Xiao", "Traveler", "Ganyu", "Xiangling", "Zhongli", "Ei", "Klee", "Collei", "Guoba", "Kazuha"],
-    Ans: "Guoba"
+    Ans: "Kazuha"
 },
 {
     Q: "Should you use potions going into a fight?",
@@ -47,7 +48,7 @@ var Questions = [{
 {
     Q: "Which kind of slime is the best?",
     Pool: ["hydro", "anemo", "geo", "cryo", "dendro", "pyro", "electro"],
-    Ans: "electro"
+    Ans: "dendro"
 },
 {
     Q: "Who uses Starconchs to level up?",
@@ -102,6 +103,7 @@ startGame.addEventListener("click", function () {
         // end of questionaire
         if (newQ === undefined) {
             endGame()
+            return
         }
 
         qPara.innerHTML = newQ.Q
@@ -111,14 +113,17 @@ startGame.addEventListener("click", function () {
 
         for (i = 0; i < newQ.Pool.length; i++) {
             var ansButton = document.createElement("button")
-            ansButton.innerText = newQ.Pool[i]
+            ansButton.textContent = newQ.Pool[i]
             document.querySelector(".showQ").appendChild(ansButton)
 
             // person clicks answer
-            ansButton.addEventListener("click", function () {
-                if (ansButton.innerText == newQ.Ans) {
-                    score = score + 100
+            ansButton.addEventListener("click", function (event) {
+                var chosen = event.target
+               
+                if (chosen.textContent === newQ.Ans) {
+                    score = score + 56
                     console.log(score)
+                    console.log(newQ.Ans)
                 }
 
                 else {
@@ -143,7 +148,7 @@ startGame.addEventListener("click", function () {
         var timerInt = setInterval(function () {
             secondsLeft--;
             timerSpan.textContent = secondsLeft;
-            if (secondsLeft === 0) {
+            if (secondsLeft <= 0) {
                 clearInterval(timerInt);
                 isPlaying = false;
                 timerSpan.textContent = '0';
@@ -160,9 +165,11 @@ startGame.addEventListener("click", function () {
         // show end screen, hide questions
         theEnd.style.display = "flex"
         showQ.style.display = "none"
+        userScore.textContent = score + " "
         // click SUBMIT
         submitInitials.addEventListener("click", function (event) {
             event.preventDefault();
+
 
             var initials = document.querySelector("#enteredInitials").value;
 
@@ -175,7 +182,7 @@ startGame.addEventListener("click", function () {
             console.log(submitInitials)
         })
         console.log("end quiz")
-        return
+        
     }
 
 })
