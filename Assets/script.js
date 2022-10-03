@@ -24,17 +24,46 @@ var submitInitials = document.getElementById("submitInitials");
 var score = 0
 var currentIndex = 0
 var Questions = [{
-    id: 0,
+    // id: 0,
     Q: "What is the name of the Traveler?",
     Pool: ["Golden Nara", "Paimon", "Aether", "Lumine"],
     Ans: "Aether"
 },
 {
-    id: 1,
     Q: "What area has the best soundrack?",
     Pool: ["Dragonspine", "Watatsumi", "The Chasm", "Devantaka"],
     Ans: "Dragonspine"
 },
+{
+    Q: "Who is the best character?",
+    Pool: ["Xiao", "Traveler", "Ganyu", "Xiangling", "Zhongli", "Ei", "Klee", "Collei", "Guoba", "Kazuha"],
+    Ans: "Guoba"
+},
+{
+    Q: "Should you use potions going into a fight?",
+    Pool: ["Attack Potions", "Defense Potions", "Element Potions", "No"],
+    Ans: "No"
+},
+{
+    Q: "Which kind of slime is the best?",
+    Pool: ["hydro", "anemo", "geo", "cryo", "dendro", "pyro", "electro"],
+    Ans: "electro"
+},
+{
+    Q: "Who uses Starconchs to level up?",
+    Pool: ["Raiden Shogun", "Xinqiu", "Childe", "Kokomi"],
+    Ans: "Childe"
+},
+{
+    Q: "What is the only five star food in Genshin?",
+    Pool: ["Jade Parcels", "Mushroom Pizza", "Flaming Red Bolognese", "Adeptus Temptation"],
+    Ans: "Adeptus Temptation"
+},
+{
+    Q: "Who is the Tsaritsa?",
+    Pool: ["A fly", "The bad guy", "Chef at the Wanmin restaurant", "Cryo Archon"],
+    Ans: "Cryo Archon"
+}
 ]
 
 
@@ -49,6 +78,7 @@ startGame.addEventListener("click", function () {
         return;
     }
     displayQuestion()
+    countdown()
 
     console.log("game started")
 
@@ -74,7 +104,7 @@ startGame.addEventListener("click", function () {
             endGame()
         }
 
-        qPara.innerText = newQ.Q
+        qPara.innerHTML = newQ.Q
         console.log("qPara", newQ.Q)
 
         document.querySelector(".showQ").appendChild(qPara)
@@ -88,7 +118,6 @@ startGame.addEventListener("click", function () {
             ansButton.addEventListener("click", function () {
                 if (ansButton.innerText == newQ.Ans) {
                     score = score + 100
-                    secondsLeft += 5
                     console.log(score)
                 }
 
@@ -109,41 +138,45 @@ startGame.addEventListener("click", function () {
         }
     }
     // time ends
-    clearInterval(secondsLeft)
-    var timerInt = setInterval(function () {
-        secondsLeft--;
-        timerSpan.textContent = secondsLeft;
-        if (secondsLeft <= 0) {
-            clearInterval(timerInt);
-            isPlaying = false;
-            timerSpan.textContent = '0';
-            endGame()
+    function countdown() {
+        clearInterval(secondsLeft)
+        var timerInt = setInterval(function () {
+            secondsLeft--;
+            timerSpan.textContent = secondsLeft;
+            if (secondsLeft === 0) {
+                clearInterval(timerInt);
+                isPlaying = false;
+                timerSpan.textContent = '0';
+                endGame()
 
-            console.log("endtimer")
-        };
-    }, 1000);
+                console.log("endtimer")
+            }
+        }, 1000);
+    }
 
     // ENDGAME PROCESSES
-    function endGame(){
+    function endGame() {
 
         // show end screen, hide questions
         theEnd.style.display = "flex"
         showQ.style.display = "none"
-// click SUBMIT
+        // click SUBMIT
         submitInitials.addEventListener("click", function (event) {
             event.preventDefault();
 
             var initials = document.querySelector("#enteredInitials").value;
 
+
             localStorage.setItem("initials", JSON.stringify(initials))
             localStorage.setItem("score", score)
 
-            window.location.href= "/highscores/HighScores.html"
+            window.location.href = "/highscores/HighScores.html"
 
             console.log(submitInitials)
         })
         console.log("end quiz")
         return
     }
+
 })
 
