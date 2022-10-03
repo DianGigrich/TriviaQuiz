@@ -64,6 +64,16 @@ var Questions = [{
     Q: "Who is the Tsaritsa?",
     Pool: ["A fly", "The bad guy", "Chef at the Wanmin restaurant", "Cryo Archon"],
     Ans: "Cryo Archon"
+},
+{
+    Q: "What is the festival called that celebrates Xiao?",
+    Pool: ["Weinlesefest", "LanternRite", "Ludi Harpastum", "MoonChase"],
+    Ans: "LanternRite"
+},
+{
+    Q: "Who is not the God of Geo?",
+    Pool: ["Morax", "RexLapis", "Zhongli", "Azhdaha"],
+    Ans: "Azhdaha"
 }
 ]
 
@@ -119,11 +129,12 @@ startGame.addEventListener("click", function () {
             // person clicks answer
             ansButton.addEventListener("click", function (event) {
                 var chosen = event.target
-               
+
                 if (chosen.textContent === newQ.Ans) {
                     score = score + 56
                     console.log(score)
                     console.log(newQ.Ans)
+                    // TODO:add correct! or incorrect color
                 }
 
                 else {
@@ -172,18 +183,32 @@ startGame.addEventListener("click", function () {
 
 
             var initials = document.querySelector("#enteredInitials").value;
+            var scoreArray = JSON.parse(localStorage.getItem("scoreArray"))
 
+            if (scoreArray === null) {
+                scoreArray = []
+            }
 
-            localStorage.setItem("initials", JSON.stringify(initials))
-            localStorage.setItem("score", score)
+            var initialScore = {
+                initials: initials,
+                score: score
+            }
+            console.log(initialScore)
+            console.log(scoreArray)
+            scoreArray.push(initialScore)
+
+            localStorage.setItem("scoreArray", JSON.stringify(scoreArray))
 
             window.location.href = "/highscores/HighScores.html"
 
             console.log(submitInitials)
         })
         console.log("end quiz")
-        
+
     }
 
 })
+// read data at storage
+// update at storage
+// render to page
 
