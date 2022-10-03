@@ -19,19 +19,29 @@ body {
 }
 
 header {
-    padding: 20px 40px;
-    margin:3%;
+    padding: 10px 30px;
+    margin:2%;
     font-size: x-large;
 }
 
+/* score box */
 main {
-    text-align: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     border: 8px solid var(--orange);
     background-color: rgb(30,163,255,0.6);
     padding: 10px 50px;
-    width:90%;
+    margin: 2%;
 }
 
+main li {
+    font-family: sans-serif;
+    font-size: larger;
+
+}
+
+/* buttons, play again and reveal answers */
 #rePlay {
     background-image: linear-gradient(to right,#1eff7a 0%, #8fd3f4 50%, #1eff7a 100%);
     width: 100px;
@@ -41,8 +51,30 @@ main {
 
 }
 
-#rePlay:hover {
+#rePlay:hover, #rvlAnswers:hover {
     border: 4px solid black;
     box-shadow: 0px 0px 10px 5px lightgreen;
-    /* background-position: right center; */
     background-image: linear-gradient(to bottom right,#1eff7a, #8fd3f4 50%, #1eff7a);
+}
+
+#rvlAnswers {
+    background-image: linear-gradient(to right,red 0%, #8fd3f4 50%, #1eff7a 100%);
+    width: 100px;
+    height: 50px;
+    border-radius: 20%;
+    transition: 0.5s;
+}
+
+
+
+.Answers {
+    display: none;
+    font-family: sans-serif;
+    font-size: larger;
+    flex-direction: column;
+    align-items: center;
+    border: 8px solid var(--orange);
+    background-color: rgb(30,163,255,0.6);
+    padding: 10px 20px;
+    margin: 2%;
+}

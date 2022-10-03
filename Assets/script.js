@@ -31,7 +31,7 @@ var Questions = [{
     Ans: "Aether"
 },
 {
-    Q: "What area has the best soundrack?",
+    Q: "What area has the best soundtrack?",
     Pool: ["Dragonspine", "Watatsumi", "The Chasm", "Devantaka"],
     Ans: "Dragonspine"
 },
@@ -100,7 +100,7 @@ startGame.addEventListener("click", function () {
 
 
     isPlaying = true
-    secondsLeft = 10
+    secondsLeft = 120
     console.log(secondsLeft)
 
 
@@ -130,17 +130,24 @@ startGame.addEventListener("click", function () {
             ansButton.addEventListener("click", function (event) {
                 var chosen = event.target
 
+                
+
                 if (chosen.textContent === newQ.Ans) {
                     score = score + 56
                     console.log(score)
                     console.log(newQ.Ans)
-                    // TODO:add correct! or incorrect color
+                
                 }
 
                 else {
                     secondsLeft -= 10
                 }
 
+                var ansChosen= document.createElement("h2")
+                ansChosen.innerHTML = newQ.Ans
+                document.querySelector(".showQ").appendChild(ansChosen)
+                console.log(ansChosen)
+                
                 currentIndex += 1
 
                 // clear board
