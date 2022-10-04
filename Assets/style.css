@@ -40,7 +40,7 @@ header {
     padding: 3%;
 }
 
-/* button */
+/* start button */
 
 #startButton {
     background-image: linear-gradient(to right,#1eff7a 0%, #8fd3f4 50%, #1eff7a 100%);
@@ -70,7 +70,7 @@ main {
     padding: 10px 20px;
     border: 5px solid var(--orange);
 }
-
+/* quiz answer style format */
 .showQ button {
     display:flex;
     align-items: flext-start;
@@ -84,6 +84,7 @@ main {
     border: 2px dashed #1eff7a;
 
 }
+
 .theEnd {
     display: none;
     flex-direction: column;
@@ -98,6 +99,7 @@ main {
     font-size: xx-large;;
 }
 
+/* submit initials button */
 #submitInitials {
     background-image: linear-gradient(to right,#1eff7a 0%, #8fd3f4 50%, #1eff7a 100%);
     width: 100px;

@@ -9,7 +9,7 @@ console.log(initialsScore, rePlay)
 
 function renderScores() {
     var retrieveInitials = JSON.parse(localStorage.getItem("scoreArray"));
-
+// retrieve scores from storage and line them up
 
     for (var i = 0; i < retrieveInitials.length; i++) {
         var scoreLi = document.createElement("li")
@@ -22,11 +22,13 @@ function renderScores() {
 
 
 }
+// reveal answers button
 rvlAnswers.addEventListener("click", function (event) {
     event.preventDefault();
 
     Answers.style.display = "flex"
 })
+// replay button
 rePlay.addEventListener("click", function (event) {
     event.preventDefault();
 
