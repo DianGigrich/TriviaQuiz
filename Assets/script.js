@@ -25,7 +25,6 @@ var submitInitials = document.getElementById("submitInitials");
 var score = 0
 var currentIndex = 0
 var Questions = [{
-    // id: 0,
     Q: "What is the name of the Traveler?",
     Pool: ["Golden Nara", "Paimon", "Aether", "Lumine"],
     Ans: "Aether"
@@ -199,7 +198,7 @@ startGame.addEventListener("click", function () {
 
             localStorage.setItem("scoreArray", JSON.stringify(scoreArray))
 
-            window.location.href = "/highscores.html"
+            window.location.href = "/TriviaQuiz/highscores.html"
 
             console.log(submitInitials)
         })
