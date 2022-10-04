@@ -199,7 +199,7 @@ startGame.addEventListener("click", function () {
 
             localStorage.setItem("scoreArray", JSON.stringify(scoreArray))
 
-            window.location.href = "/highscores/HighScores.html"
+            window.location.href = "/highscores/highscores.html"
 
             console.log(submitInitials)
         })
