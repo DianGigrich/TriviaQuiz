@@ -77,12 +77,7 @@ var Questions = [{
 }
 ]
 
-
-
-// localStorage.setItem("score", JSON.stringify())
-
-// storedAnswer = JSON.parse(localStorage.getItem())
-
+// START GAME
 
 startGame.addEventListener("click", function () {
     if (isPlaying) {
@@ -100,7 +95,7 @@ startGame.addEventListener("click", function () {
 
 
     isPlaying = true
-    secondsLeft = 120
+    secondsLeft = 130
     console.log(secondsLeft)
 
 
@@ -115,7 +110,7 @@ startGame.addEventListener("click", function () {
             endGame()
             return
         }
-
+        // creating the quiz display
         qPara.innerHTML = newQ.Q
         console.log("qPara", newQ.Q)
 
@@ -130,24 +125,22 @@ startGame.addEventListener("click", function () {
             ansButton.addEventListener("click", function (event) {
                 var chosen = event.target
 
-                
-
                 if (chosen.textContent === newQ.Ans) {
                     score = score + 56
                     console.log(score)
                     console.log(newQ.Ans)
-                
+
                 }
 
                 else {
                     secondsLeft -= 10
                 }
 
-                var ansChosen= document.createElement("h2")
+                var ansChosen = document.createElement("h2")
                 ansChosen.innerHTML = newQ.Ans
                 document.querySelector(".showQ").appendChild(ansChosen)
                 console.log(ansChosen)
-                
+
                 currentIndex += 1
 
                 // clear board
@@ -215,7 +208,3 @@ startGame.addEventListener("click", function () {
     }
 
 })
-// read data at storage
-// update at storage
-// render to page
-
