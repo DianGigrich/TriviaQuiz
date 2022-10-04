@@ -12,7 +12,7 @@ vscode, gitbash, github
 
 ## Usage
 
-![A short video clip of functionality.](./Assets/images/Trivia%20Quiz.mp4)
+https://DianGigrich.github.io/TriviaQuiz/
 
 ![An example of the quiz.](./Assets/images/Trivia%20Quiz.png)
 
